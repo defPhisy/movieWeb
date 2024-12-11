@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie-Web</title>
+</head>
+
+<body>
+
+    <form id="user_login" action="/" method="post">
+
+        <select name="user_id" id="user_id" required>
+            {% for user in users %}
+            <option value="{{ user.id }}">{{ user.name }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Login</button>
+    </form>
+    
+    <form id="user_registration" action="/add_user" method="get">
+        <button type="submit">Register</button>
+    </form>
+</body>
+
+</html>

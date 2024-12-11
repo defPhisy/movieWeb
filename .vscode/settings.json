@@ -1,3 +1,6 @@
 {
-  "cSpell.words": ["imdb", "jsonify"]
+  "cSpell.words": ["apikey", "imdb", "jsonify", "omdb", "viewonly"],
+  "python.testing.pytestArgs": ["."],
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true
 }

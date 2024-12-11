@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}">
+    <script src="https://kit.fontawesome.com/f26c72a963.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <style>
@@ -13,16 +15,55 @@
 </style>
 
 <body>
-    <ul class="user">
-        <li>{{ user.name }}</li>
-        <li>{{ user.nick }}</li>
-        <ul>
-            {% for movie in user.movies %}
-            <li>{{ movie.title }}</li>
-            {% endfor %}
-        </ul>
+
+    <h1><span class="title">{{ user.name }}'s Movies</span></h1>
+    <p class="subtext">You have {{ movie_count }} movies in your library.</p>
+    <nav>
+        <form class="sort" action="/users/{{ user.id }}" method="get">
+            <select name="sort" id="sort" required>
+                <option value="">Filter Movies</option>
+                <option value="title">Title</option>
+                <option value="author">Author</option>
+                <option value="rating">Rating</option>
+                <option value="publication_year">Publish Year</option>
+            </select>
+            <button type="submit"><i class="fa-solid fa-filter"></i> Apply Filter</button>
+        </form>
+
+        <div class="separator"></div>
+
+        <form action="/search_movie" method="get">
+            <input type="hidden" name="user_id" value="{{ user.id }}">
+            <button type="submit"><i class="fa-solid fa-plus"></i> Add Movie</button>
+        </form>
+
+        <a href="/"><button>Change User</button></a>
+    </nav>
+
+
+
+    <ul class="movies">
+        {% for movie in user.movies %}
+        <li class="movie">
+            <h2>{{ movie.title }}</h2>
+            <form action="/users/{{ user.id }}/delete_movie/{{ movie.id }}" method="get"
+                onsubmit="return confirmDelete();">
+                <input type="hidden" value="{{ user.id }}">
+                <button type="submit">Delete</button>
+            </form>
+            <p>{{ movie.year }}</p>
+            <p>{{ movie.plot }}</p>
+            <img src="{{ movie.poster_link }}" alt="movie cover: {{ movie.title }}">
+        </li>
+        {% endfor %}
+    </ul>
 
     </ul>
 </body>
+<script>
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete this movie?");
+    }
+</script>
 
 </html>

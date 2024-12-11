@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}">
+</head>
+
+<body>
+    <a href="/"><button class="back_button">Back</button></a>
+
+    <h1>NEW USER</h1>
+
+    <div class="container">
+        <form action="/add_user" method="POST">
+
+            <label for="name">Username:</label>
+            <input type="text" id="name" name="name" placeholder="Max Mustermann" required>
+
+            <label for="nick">Nickname:</label>
+            <input type="text" id="nick" name="nick" placeholder="xXRul0rXx" required>
+
+            <input type="submit" value="Register">
+        </form>
+    </div>
+
+</body>
+
+</html>

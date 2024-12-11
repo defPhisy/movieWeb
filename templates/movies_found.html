@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}">
+</head>
+
+<body>
+    <a href="/users/{{ user.id }}"><button class="back_button">Back</button></a>
+
+    <h1>FOUND MOVIES</h1>
+    <p>for {{ user.name }}'s library</p>
+
+    <div class="container">
+        {% for movie in search_results %}
+        {% if movie.Poster != 'N/A' %}
+        <div class="movie">
+            <h2>{{ movie.Title }}</h2>
+            <img src="{{ movie.Poster }}" alt="Movie Cover: {{ movie.Title}}">
+            <button>Add this Movie</button>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+    </div>
+
+</body>
+
+</html>

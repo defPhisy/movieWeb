@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}">
+</head>
+
+<body>
+    <a href="/users/{{ user.id }}"><button class="back_button">Back</button></a>
+
+    <h1>NEW MOVIE</h1>
+    <p>for {{ user.name }}'s library</p>
+
+    <div class="container">
+        <form action="/search_movie" method="POST">
+            <input type="hidden" name="user_id" value="{{ user.id }}">
+
+            <label for="title">Movie Title:</label>
+            <input type="text" id="title" name="title" placeholder="Your Movie Title" required>
+
+            <label for="year">Publication Year:</label>
+            <input type="number" min="1800" max="{{ current_year }}" step="1" name="year" id="year" placeholder="2024">
+
+            <input type="submit" value="Search Movie">
+        </form>
+    </div>
+
+</body>
+
+</html>
